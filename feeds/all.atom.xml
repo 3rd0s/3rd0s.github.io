@@ -975,8 +975,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="An&amp;#225;lise-dos-Dados-do-BoardGameGeek"&gt;An&amp;#225;lise dos Dados do BoardGameGeek&lt;a class="anchor-link" href="#An&amp;#225;lise-dos-Dados-do-BoardGameGeek"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Nesse primeiro post irei fazer uma análise exploratória do dados do BoardGameGeek, esse &lt;a href="https://www.kaggle.com/gabrio/board-games-dataset"&gt;dataset&lt;/a&gt; foi baixado do kaggle. Nele temos cerca de 94000 jogos e expansões com seus atributos e avaliações.&lt;/p&gt;
-&lt;h2 id="Sum&amp;#225;rio"&gt;Sum&amp;#225;rio&lt;a class="anchor-link" href="#Sum&amp;#225;rio"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;p&gt;Nesse primeiro post irei fazer uma análise exploratória do dados do BoardGameGeek, esse &lt;a href="https://www.kaggle.com/gabrio/board-games-dataset"&gt;dataset&lt;/a&gt; foi baixado do kaggle. Nele temos cerca de 94000 jogos e expansões com seus atributos e avaliações.&lt;/p&gt;
+&lt;h1 id="Sum&amp;#225;rio"&gt;Sum&amp;#225;rio&lt;a class="anchor-link" href="#Sum&amp;#225;rio"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;Introdução&lt;/li&gt;
 &lt;li&gt;Pré-processamento&lt;/li&gt;
 &lt;/ul&gt;
@@ -988,7 +988,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Introdu&amp;#231;&amp;#227;o"&gt;Introdu&amp;#231;&amp;#227;o&lt;a class="anchor-link" href="#Introdu&amp;#231;&amp;#227;o"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;War é o pior jogo já feito.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id="Introdu&amp;#231;&amp;#227;o"&gt;Introdu&amp;#231;&amp;#227;o&lt;a class="anchor-link" href="#Introdu&amp;#231;&amp;#227;o"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;War é o pior jogo já feito.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -997,7 +997,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Pr&amp;#233;-processamento"&gt;Pr&amp;#233;-processamento&lt;a class="anchor-link" href="#Pr&amp;#233;-processamento"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Primeiro é necessário ententeder como está estruturado o banco de dados e quais informações há nele.&lt;/p&gt;
+&lt;h1 id="Pr&amp;#233;-processamento"&gt;Pr&amp;#233;-processamento&lt;a class="anchor-link" href="#Pr&amp;#233;-processamento"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Primeiro é necessário ententeder como está estruturado o banco de dados e quais informações há nele, começaremos verificando quais tabelas há nele.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1042,6 +1042,15 @@ bgg.topics
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;A tabela BoardGames parece promissora. Irei analisar ela mais profundamente passando para Pandas.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
  
 
