@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <!-- Site Meta Data -->
-  <title>First Post</title>
+  <title>Análise dos Dados do BoardGameGeek</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="William Mesquita">
@@ -29,13 +29,13 @@
   <meta name="twitter:image" content="">
 
 <meta name="twitter:creator" content="">
-<meta name="twitter:url" content="https://3rd0s.github.io/first-post.html">
-<meta name="twitter:title" content="Data Hunter ~ First Post">
-<meta name="twitter:description" content="<p>My first post, read it to find out.</p>">
+<meta name="twitter:url" content="https://3rd0s.github.io/analise-eda-bgg.html">
+<meta name="twitter:title" content="Data Hunter ~ Análise dos Dados do BoardGameGeek">
+<meta name="twitter:description" content="<p>EDA inicial dos dados do BoardGameGeek</p>">
 
 <!-- Facebook Meta Data -->
-<meta property="og:title" content="Data Hunter ~ First Post" />
-<meta property="og:description" content="<p>My first post, read it to find out.</p>" />
+<meta property="og:title" content="Data Hunter ~ Análise dos Dados do BoardGameGeek" />
+<meta property="og:description" content="<p>EDA inicial dos dados do BoardGameGeek</p>" />
 <meta property="og:image" content="" />
 </head>
 
@@ -76,7 +76,7 @@
   <article>
 <section id="content">
     <article>
-        <h2 class="post_title post_detail"><a href="https://3rd0s.github.io/first-post.html" rel="bookmark" title="Permalink to First Post">First Post</a></h2>
+        <h2 class="post_title post_detail"><a href="https://3rd0s.github.io/analise-eda-bgg.html" rel="bookmark" title="Permalink to Análise dos Dados do BoardGameGeek">Análise dos Dados do BoardGameGeek</a></h2>
         <div class="entry-content blog-post">
             <style type="text/css">/*!
 *
@@ -1054,7 +1054,12 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="first-post-must-be-wise">first post must be wise<a class="anchor-link" href="#first-post-must-be-wise">&#182;</a></h1>
+<h1 id="An&#225;lise-dos-Dados-do-BoardGameGeek">An&#225;lise dos Dados do BoardGameGeek<a class="anchor-link" href="#An&#225;lise-dos-Dados-do-BoardGameGeek">&#182;</a></h1><p>Nesse primeiro post irei fazer uma análise exploratória do dados do BoardGameGeek, esse <a href="https://www.kaggle.com/gabrio/board-games-dataset">dataset</a> foi baixado do kaggle. Nele temos cerca de 94000 jogos e expansões com seus atributos e avaliações.</p>
+<h2 id="Sum&#225;rio">Sum&#225;rio<a class="anchor-link" href="#Sum&#225;rio">&#182;</a></h2><ul>
+<li>Introdução</li>
+<li>Pré-processamento</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -1062,10 +1067,60 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>first try to post something</p>
+<h2 id="Introdu&#231;&#227;o">Introdu&#231;&#227;o<a class="anchor-link" href="#Introdu&#231;&#227;o">&#182;</a></h2><p><strong>War é o pior jogo já feito.</strong></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pr&#233;-processamento">Pr&#233;-processamento<a class="anchor-link" href="#Pr&#233;-processamento">&#182;</a></h2><p>Primeiro é necessário ententeder como está estruturado o banco de dados e quais informações há nele.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;database.sqlite&#39;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE type=&#39;table&#39;;&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BoardGames
+bgg.ldaOut.topics
+bgg.ldaOut.top.terms
+bgg.ldaOut.top.documents
+bgg.topics
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
  
 
@@ -1108,25 +1163,27 @@ h6:hover .anchor-link {
             <span class="post_date">Fri 27 July 2018</span>
             <div><span>Tags : </span>
                 <span><a href="https://3rd0s.github.io/tag/python.html">#python, </a></span>
+                <span><a href="https://3rd0s.github.io/tag/boardgame.html">#boardgame, </a></span>
+                <span><a href="https://3rd0s.github.io/tag/eda.html">#EDA, </a></span>
             </div>
 
             <div class="entry-social">
-                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://3rd0s.github.io/first-post.html&text=First Post&via="><img src="https://3rd0s.github.io/theme/images/icons/twitter-s.png"></a></span>
+                <span class="twitter"><a target="_blank" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;" title="Twitter" href="https://twitter.com/share?url=https://3rd0s.github.io/analise-eda-bgg.html&text=Análise dos Dados do BoardGameGeek&via="><img src="https://3rd0s.github.io/theme/images/icons/twitter-s.png"></a></span>
 
-                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://3rd0s.github.io/first-post.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://3rd0s.github.io/theme/images/icons/google-s.png"></a></span>
+                <span class="gplus"><a target="_blank" title="Google +" href="https://plus.google.com/share?url=https://3rd0s.github.io/analise-eda-bgg.html&hl=fr" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://3rd0s.github.io/theme/images/icons/google-s.png"></a></span>
 
-                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://3rd0s.github.io/first-post.html&t=First Post"><img src="https://3rd0s.github.io/theme/images/icons/facebook-s.png"></a></span>
+                <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://3rd0s.github.io/analise-eda-bgg.html&t=Análise dos Dados do BoardGameGeek"><img src="https://3rd0s.github.io/theme/images/icons/facebook-s.png"></a></span>
 
-                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://3rd0s.github.io/first-post.html&title=First Post" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://3rd0s.github.io/theme/images/icons/linkedin-s.png"></a>
+                <a  target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://3rd0s.github.io/analise-eda-bgg.html&title=Análise dos Dados do BoardGameGeek" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="https://3rd0s.github.io/theme/images/icons/linkedin-s.png"></a>
 
-                <span class="mail"><a href="mailto:?subject=First Post&amp;body=Viens découvrir un article à propos de [First Post] sur le site de William Mesquita. https://3rd0s.github.io/first-post.html" title="Share by Email" target="_blank"><img src="https://3rd0s.github.io/theme/images/icons/mail-s.png"></a></span>
+                <span class="mail"><a href="mailto:?subject=Análise dos Dados do BoardGameGeek&amp;body=Viens découvrir un article à propos de [Análise dos Dados do BoardGameGeek] sur le site de William Mesquita. https://3rd0s.github.io/analise-eda-bgg.html" title="Share by Email" target="_blank"><img src="https://3rd0s.github.io/theme/images/icons/mail-s.png"></a></span>
             </div>
         </div>
         <div class="comments">
             <h2>Comments !</h2>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
-            var disqus_identifier = "first-post.html";
+            var disqus_identifier = "analise-eda-bgg.html";
             (function() {
                 var dsq = document.createElement('script');
                 dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Data Hunter</title><link href="https://3rd0s.github.io/" rel="alternate"></link><link href="https://3rd0s.github.io/feeds/all.atom.xml" rel="self"></link><id>https://3rd0s.github.io/</id><updated>2018-07-27T11:30:00-03:00</updated><entry><title>First Post</title><link href="https://3rd0s.github.io/first-post.html" rel="alternate"></link><published>2018-07-27T11:30:00-03:00</published><updated>2018-07-27T11:30:00-03:00</updated><author><name>me</name></author><id>tag:3rd0s.github.io,2018-07-27:first-post.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Data Hunter</title><link href="https://3rd0s.github.io/" rel="alternate"></link><link href="https://3rd0s.github.io/feeds/all.atom.xml" rel="self"></link><id>https://3rd0s.github.io/</id><updated>2018-07-27T17:30:00-03:00</updated><entry><title>Análise dos Dados do BoardGameGeek</title><link href="https://3rd0s.github.io/analise-eda-bgg.html" rel="alternate"></link><published>2018-07-27T17:30:00-03:00</published><updated>2018-07-27T17:30:00-03:00</updated><author><name>me</name></author><id>tag:3rd0s.github.io,2018-07-27:analise-eda-bgg.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -975,7 +975,12 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="first-post-must-be-wise"&gt;first post must be wise&lt;a class="anchor-link" href="#first-post-must-be-wise"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="An&amp;#225;lise-dos-Dados-do-BoardGameGeek"&gt;An&amp;#225;lise dos Dados do BoardGameGeek&lt;a class="anchor-link" href="#An&amp;#225;lise-dos-Dados-do-BoardGameGeek"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Nesse primeiro post irei fazer uma análise exploratória do dados do BoardGameGeek, esse &lt;a href="https://www.kaggle.com/gabrio/board-games-dataset"&gt;dataset&lt;/a&gt; foi baixado do kaggle. Nele temos cerca de 94000 jogos e expansões com seus atributos e avaliações.&lt;/p&gt;
+&lt;h2 id="Sum&amp;#225;rio"&gt;Sum&amp;#225;rio&lt;a class="anchor-link" href="#Sum&amp;#225;rio"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Introdução&lt;/li&gt;
+&lt;li&gt;Pré-processamento&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -983,10 +988,60 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;first try to post something&lt;/p&gt;
+&lt;h2 id="Introdu&amp;#231;&amp;#227;o"&gt;Introdu&amp;#231;&amp;#227;o&lt;a class="anchor-link" href="#Introdu&amp;#231;&amp;#227;o"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;War é o pior jogo já feito.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Pr&amp;#233;-processamento"&gt;Pr&amp;#233;-processamento&lt;a class="anchor-link" href="#Pr&amp;#233;-processamento"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Primeiro é necessário ententeder como está estruturado o banco de dados e quais informações há nele.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sqlite3&lt;/span&gt;
+
+&lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;database.sqlite&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SELECT name FROM sqlite_master WHERE type=&amp;#39;table&amp;#39;;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;BoardGames
+bgg.ldaOut.topics
+bgg.ldaOut.top.terms
+bgg.ldaOut.top.documents
+bgg.topics
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;/div&gt;
  
 
@@ -1019,4 +1074,4 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python"></category></entry></feed>
+</summary><category term="python"></category><category term="boardgame"></category><category term="EDA"></category></entry></feed>
