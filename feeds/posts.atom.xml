@@ -1084,4 +1084,5 @@ bgg.topics
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="python"></category><category term="boardgame"></category><category term="EDA"></category></entry></feed>
+&lt;/script&gt;
+</content><category term="python"></category><category term="boardgame"></category><category term="EDA"></category></entry></feed>
